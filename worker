@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'ffi-rzmq'
+
+context = ZMQ::Context.new
+socket = context.socket(ZMQ::PUB)
+socket.connect "tcp://spork.in:9999"
+
+loop do
+  p 'send'
+  socket.send_string "hello"
+  sleep 1
+end
